@@ -1,0 +1,31 @@
+#mapInit{
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+input[type="text"]{
+    vertical-align: middle;
+    border: 0;
+}
+
+button{
+    vertical-align: middle;
+    float: left;
+    box-sizing: border-box;
+}
+
+#table1{
+    width: 100%;
+}
+table, th, td{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+#map {
+    width: 75%;
+    align-content: center;
+    height: 400px;
+}

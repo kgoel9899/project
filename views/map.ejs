@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>MAP</title>
+  <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+	<link rel="stylesheet" type="text/css" href="/assets/style.css">
+</head>
+<body>
+
+<div id="mapInit">
+	<!-- <form method="post">
+    <table id="form-table">
+      <tr>
+        <td><input type="text" name="name" placeholder="Name" required="true"></td>
+        <td><input type="text" name="place" placeholder="Place" required="true"></td>
+        <td><input type="text" name="lat" placeholder="Latitude" required="true"></td>
+        <td><input type="text" name="lng" placeholder="Longitude" required="true"></td>
+        <td><button class="b1" type="submit">Add</button></td>
+      </tr>
+    </table>
+	</form>
+  <br>
+   -->
+  <table id="table1">
+    <tr>
+      <th align="center">Name</th>
+      <th align="center">Place</th>
+      <th align="center">Latitude</th>
+      <th align="center">Longitude</th>
+    </tr>
+    <% for(var i=0; i<data.length; i++) { %>
+      <tr>
+        <td align="center" id="<%= data[i].name %>" ><%= data[i].name %> <button onclick="rowClick(this.parentNode.id)">View</button> </td>
+        <td align="center"><%= data[i].place %></td>
+        <td align="center"><%= data[i].lat %></td>
+        <td align="center"><%= data[i].lng %></td>
+      </tr>
+    <% } %>
+  </table>
+</div>
+<br>
+<br>
+<div id="map"></div>
+<script>
+  function rowClick(idd) {
+    console.log(idd);
+    // for(var i=0;i<data.length;i++) {
+    //   if(idd === data[i].name) {
+    //     console.log(data[i].place);
+    //   }
+    // }
+  }
+  function initMap() {
+    var options = {
+      zoom: 8,
+      center: {lat: 28.6139, lng: 77.2090}
+    }
+    var map = new google.maps.Map(document.getElementById('map'), options);
+    var marker = new google.maps.Marker({position: options.center, map: map});
+  }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcXC-L84o-sr8YH0nOHEWgAY5Gbh8LqSo&callback=initMap"
+async defer></script>
+</body>
+</html>
