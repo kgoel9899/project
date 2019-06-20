@@ -3,12 +3,13 @@
 <head>
 	<title>MAP</title>
   <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
-	<link rel="stylesheet" type="text/css" href="/assets/style.css">
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="/assets/style.css">
 </head>
 <body>
 
 <div id="mapInit">
-	<!-- <form method="post">
+	<form method="post">
     <table id="form-table">
       <tr>
         <td><input type="text" name="name" placeholder="Name" required="true"></td>
@@ -20,7 +21,7 @@
     </table>
 	</form>
   <br>
-   -->
+  
   <table id="table1">
     <tr>
       <th align="center">Name</th>
@@ -30,7 +31,8 @@
     </tr>
     <% for(var i=0; i<data.length; i++) { %>
       <tr>
-        <td align="center" id= "<%= data[i].place %>" ><%= data[i].name %> <button onclick="rowClick(this.parentNode.id)">View</button> </td>
+        <td align="center" id= "<%= data[i].place %>" > <a onclick="rowClick(this.parentNode.id)"> <%= data[i].name %> </a> </td>
+        <!-- <td align="center" id= "<%= data[i].place %>" ><%= data[i].name %> <button onclick="rowClick(this.parentNode.id)">View</button> </td> -->
         <td align="center"><%= data[i].place %></td>
         <td align="center"><%= data[i].lat %></td>
         <td align="center"><%= data[i].lng %></td>
@@ -45,8 +47,11 @@
   var address;
   var geocoder;
   var map;
+  var curr = [];
+  var showw = [];
   function rowClick(idd) {
     address = idd;
+    curr.push(name);
     //console.log(address);
     initMap();
     // for(var i=0;i<data.length;i++) {
@@ -55,17 +60,64 @@
     //   }
     // }
   }
+
+
+  //console.log("yessss");
+  // var mongoose = require("mongoose");
+  // mongoose.connect("mongodb://dmrctest:dmrc123@ds237357.mlab.com:37357/dmrcmap", function(err, db) {
+  //   if(err) {
+  //     throw err;
+  //   } else {
+  //     console.log("connected");
+  //     var dbo = db.db("dmrcmap");
+  //     var len = curr.length;
+  //     for(var i=0;i<len;i++) {
+  //       var query = { name: curr[i] };
+  //       dbo.collection("maps").find(query).toArray(function(err, result) {
+  //         if(err) {
+  //           throw err;
+  //         } else {
+  //           console.log(result);
+  //           showw.push(result);
+  //         }
+  //       });
+  //     }
+  //     db.close();
+  //   }
+  // });
+
+
   function initMap() {
+    //console.log(showw);
     //console.log(address);
     geocoder = new google.maps.Geocoder();
     var options = {
-      zoom: 8,
+      zoom: 6,
       center: {lat: 28.6139, lng: 77.2090}
     }
     map = new google.maps.Map(document.getElementById('map'), options);
     //var marker = new google.maps.Marker({position: options.center, map: map});
     codeAddress(address);
   }
+  // geocode();
+  // function geocode() {
+  //   var location = "2 Nirman Apartments, Mayur Vihar Phase 1, New Delhi";
+  //   axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
+  //     params: {
+  //       address: location,
+  //       key: 'AIzaSyCH7aRwSS8e4EjV4XP7LzliRfRBwjdwbSw'
+  //     }
+  //   })
+  //   .then(function(res) {
+  //     console.log(res);
+  //   })
+  //   .catch(function(err) {
+  //     if(err) {
+  //       throw err;
+  //     }
+  //   });
+  // }
+
   function codeAddress(address) {
     console.log("yes");
     geocoder.geocode({'address': address }, function (results, status) {
@@ -84,7 +136,7 @@
     });
   }
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=API_KEY&callback=initMap"
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCH7aRwSS8e4EjV4XP7LzliRfRBwjdwbSw&callback=initMap"
 async defer></script>
 </body>
 </html>

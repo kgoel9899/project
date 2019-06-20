@@ -33,18 +33,22 @@ module.exports = function(app){
     // res.render('map', {data: data});
   });
 
-  // app.post('/map', urlencodedParser, function(req, res){
-  //   // console.log(req.body);
-  //   var newItem = Model(req.body).save(function(err, data) {
-  //     if(err) {
-  //       throw err;
-  //     } else {
-  //       console.log(data);
-  //       console.log("saved");
-  //       console.log(data);
-  //       res.render('map', {data: data});
-  //     }
-  //   });
-  // });
+  app.post('/map', urlencodedParser, function(req, res){
+    // console.log(req.body);
+    var newItem = Model(req.body).save(function(err, data) {
+      if(err) {
+        throw err;
+      } else {
+        console.log("saved");
+        Model.find({}, function(err, data) {
+          if(err) {
+            throw err;
+          } else {
+            res.render('map', {data: data});
+          }
+        });
+      }
+    });
+  });
 
 };
