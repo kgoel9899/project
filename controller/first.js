@@ -32,23 +32,37 @@ module.exports = function(app){
     });
     // res.render('map', {data: data});
   });
-
+  var addre = "a";
   app.post('/map', urlencodedParser, function(req, res){
-    // console.log(req.body);
-    var newItem = Model(req.body).save(function(err, data) {
-      if(err) {
-        throw err;
-      } else {
-        console.log("saved");
-        Model.find({}, function(err, data) {
-          if(err) {
-            throw err;
-          } else {
-            res.render('map', {data: data});
-          }
-        });
-      }
-    });
+    console.log(req.body);
+    console.log(req.body.place);
+    if(req.body.place !== addre) {
+      console.log("hereeeee");
+      var newItem = Model(req.body).save(function(err, data) {
+        if(err) {
+          throw err;
+        } else {
+          console.log("saved");
+          Model.find({}, function(err, data) {
+            if(err) {
+              throw err;
+            } else {
+              res.render('map', {data: data});
+            }
+          });
+        }
+      });
+      addre = req.body.place;
+    } else {
+      console.log("success");
+      Model.find({}, function(err, data) {
+        if(err) {
+          throw err;
+        } else {
+          res.render('map', {data: data});
+        }
+      });
+    }
   });
 
 };

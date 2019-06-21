@@ -19,7 +19,8 @@
         <td><button class="b1" type="submit">Add</button></td>
       </tr>
     </table>
-	</form>
+  </form>
+  <!-- <iframe id="uploader_iframe" name="uploader_iframe" style="display: none;"></iframe> -->
   <br>
   
   <table id="table1">
@@ -52,7 +53,7 @@
   function rowClick(idd) {
     address = idd;
     curr.push(name);
-    //console.log(address);
+    console.log(address);
     initMap();
     // for(var i=0;i<data.length;i++) {
     //   if(idd === data[i].name) {
@@ -60,32 +61,6 @@
     //   }
     // }
   }
-
-
-  //console.log("yessss");
-  // var mongoose = require("mongoose");
-  // mongoose.connect("mongodb://dmrctest:dmrc123@ds237357.mlab.com:37357/dmrcmap", function(err, db) {
-  //   if(err) {
-  //     throw err;
-  //   } else {
-  //     console.log("connected");
-  //     var dbo = db.db("dmrcmap");
-  //     var len = curr.length;
-  //     for(var i=0;i<len;i++) {
-  //       var query = { name: curr[i] };
-  //       dbo.collection("maps").find(query).toArray(function(err, result) {
-  //         if(err) {
-  //           throw err;
-  //         } else {
-  //           console.log(result);
-  //           showw.push(result);
-  //         }
-  //       });
-  //     }
-  //     db.close();
-  //   }
-  // });
-
 
   function initMap() {
     //console.log(showw);
@@ -119,7 +94,7 @@
   // }
 
   function codeAddress(address) {
-    console.log("yes");
+    //console.log("yes");
     geocoder.geocode({'address': address }, function (results, status) {
       console.log(results);
       var latLng = {lat: results[0].geometry.location.lat (), lng: results[0].geometry.location.lng ()};
