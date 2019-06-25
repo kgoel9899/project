@@ -10,4 +10,4 @@ app.use(express.static('./public'));
 first(app);
 
 app.listen(3000);
-console.log('Listening');
+console.log('Listening to port 3000');

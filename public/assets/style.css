@@ -7,28 +7,36 @@ body{
     box-sizing: border-box;
     overflow-x: auto;
 }
-
-input[type="text"]{
+form {
+    text-align: center;
+}
+input[type="text"]:focus{
     vertical-align: middle;
-    border: 0;
 }
 
 button{
     vertical-align: middle;
     box-sizing: border-box;
+    outline: none;
 }
-
+button:focus{
+    outline: 0 !important;
+    box-shadow: none;
+}
 #table1{
     width: 100%;
 }
 table, th, td{
     border: 1px solid black;
     border-collapse: collapse;
-    padding: 12px;
+    padding: 10px;
     text-align: center;
 }
 tr:hover {
     background-color: #CCE5FF;
+}
+tr:nth-child(even) {
+    background-color: #f2f2f2;
 }
 #map {
     width: 100%;

@@ -9,7 +9,8 @@ function initMap() {
     geocoder = new google.maps.Geocoder();
     options = {
       zoom: 6,
-      center: {lat: 28.6139, lng: 77.2090}
+      center: {lat: 28.6139, lng: 77.2090},
+      gestureHandling: 'cooperative'
     }
     map = new google.maps.Map(document.getElementById('map'), options);
 }
