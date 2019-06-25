@@ -2,14 +2,14 @@
 <html>
 <head>
 	<title>MAP</title>
-  <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="/assets/style.css">
+  <script src="/assets/showw.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
 </head>
 <body>
-
 <div id="mapInit">
-	<form method="post">
+  <form method="post">
     <table id="form-table">
       <tr>
         <td><input type="text" name="name" placeholder="Name" required="true"></td>
@@ -19,24 +19,24 @@
         <td><button class="b1" type="submit">Add</button></td>
       </tr>
     </table>
-  </form>
-  <!-- <iframe id="uploader_iframe" name="uploader_iframe" style="display: none;"></iframe> -->
+  </form>  
   <br>
-  
+  <br>
   <table id="table1">
     <tr>
-      <th align="center">Name</th>
-      <th align="center">Place</th>
-      <th align="center">Latitude</th>
-      <th align="center">Longitude</th>
+      <th>Name</th>
+      <th>Place</th>
+      <th>Latitude</th>
+      <th>Longitude</th>
+      <th>View</th>
     </tr>
     <% for(var i=0; i<data.length; i++) { %>
       <tr>
-        <td align="center" id= "<%= data[i].place %>" > <a onclick="rowClick(this.parentNode.id)"> <%= data[i].name %> </a> </td>
-        <!-- <td align="center" id= "<%= data[i].place %>" ><%= data[i].name %> <button onclick="rowClick(this.parentNode.id)">View</button> </td> -->
-        <td align="center"><%= data[i].place %></td>
-        <td align="center"><%= data[i].lat %></td>
-        <td align="center"><%= data[i].lng %></td>
+        <td><%= data[i].name %></td>
+        <td><%= data[i].place %></td>
+        <td><%= data[i].lat %></td>
+        <td><%= data[i].lng %></td>
+        <td id= "<%= data[i].place %>"> <button onclick="codeAddress(this.parentNode.id)" type="button" class="btn btn-info"> View </button></td>
       </tr>
     <% } %>
   </table>
@@ -44,74 +44,7 @@
 <br>
 <br>
 <div id="map"></div>
-<script>
-  var address;
-  var geocoder;
-  var map;
-  var curr = [];
-  var showw = [];
-  function rowClick(idd) {
-    address = idd;
-    curr.push(name);
-    console.log(address);
-    initMap();
-    // for(var i=0;i<data.length;i++) {
-    //   if(idd === data[i].name) {
-    //     console.log(data[i].place);
-    //   }
-    // }
-  }
-
-  function initMap() {
-    //console.log(showw);
-    //console.log(address);
-    geocoder = new google.maps.Geocoder();
-    var options = {
-      zoom: 6,
-      center: {lat: 28.6139, lng: 77.2090}
-    }
-    map = new google.maps.Map(document.getElementById('map'), options);
-    //var marker = new google.maps.Marker({position: options.center, map: map});
-    codeAddress(address);
-  }
-  // geocode();
-  // function geocode() {
-  //   var location = "2 Nirman Apartments, Mayur Vihar Phase 1, New Delhi";
-  //   axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
-  //     params: {
-  //       address: location,
-  //       key: 'AIzaSyCH7aRwSS8e4EjV4XP7LzliRfRBwjdwbSw'
-  //     }
-  //   })
-  //   .then(function(res) {
-  //     console.log(res);
-  //   })
-  //   .catch(function(err) {
-  //     if(err) {
-  //       throw err;
-  //     }
-  //   });
-  // }
-
-  function codeAddress(address) {
-    //console.log("yes");
-    geocoder.geocode({'address': address }, function (results, status) {
-      console.log(results);
-      var latLng = {lat: results[0].geometry.location.lat (), lng: results[0].geometry.location.lng ()};
-        console.log (latLng);
-        if (status === 'OK') {
-          var marker = new google.maps.Marker({
-            position: latLng,
-            map: map
-          });
-          //console.log (map);
-        } else {
-          alert('Geocode was not successful for the following reason: ' + status);
-        }
-    });
-  }
-</script>
-<script src="https://maps.googleapis.com/maps/api/js?key=API_KEY&callback=initMap"
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCH7aRwSS8e4EjV4XP7LzliRfRBwjdwbSw&callback=initMap"
 async defer></script>
 </body>
 </html>

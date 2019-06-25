@@ -1,8 +1,11 @@
+body{
+    padding: 20px;
+    margin: 0 auto;
+}
 #mapInit{
     width: 100%;
-    margin: 0 auto;
-    padding: 20px;
     box-sizing: border-box;
+    overflow-x: auto;
 }
 
 input[type="text"]{
@@ -12,7 +15,6 @@ input[type="text"]{
 
 button{
     vertical-align: middle;
-    float: left;
     box-sizing: border-box;
 }
 
@@ -22,10 +24,14 @@ button{
 table, th, td{
     border: 1px solid black;
     border-collapse: collapse;
+    padding: 12px;
+    text-align: center;
 }
-
+tr:hover {
+    background-color: #CCE5FF;
+}
 #map {
     width: 100%;
     align-content: center;
-    height: 400px;
+    height: 500px;
 }
