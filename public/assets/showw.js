@@ -4,6 +4,9 @@ var map;
 var marker;
 var latLng;
 var options;
+function reset() {
+    document.getElementById("fo").reset();
+}
 initMap();
 function initMap() {
     geocoder = new google.maps.Geocoder();
@@ -23,7 +26,7 @@ function codeAddress(address) {
                 position: latLng,
                 map: map
             });
-            map.setZoom(7);
+            map.setZoom(15);
             map.panTo(latLng);
         } else {
             alert('Geocode was not successful for the following reason: ' + status);
