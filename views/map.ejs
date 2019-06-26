@@ -11,17 +11,20 @@
 <div id="mapInit">
   <form method="post" id="fo">
     <strong>Name: </strong> <input type="text" name="name" placeholder="Name" required="true">  
-    <strong>Address: </strong> <input type="text" name="place" placeholder="Place" required="true">
+    <strong>Address: </strong> <input type="text" name="address" placeholder="Address" required="true">
     <strong>Latitude: </strong> <input type="text" name="lat" placeholder="Latitude" required="true">
-    <strong>Longitude: </strong> <input type="text" name="lng" placeholder="Longitude" required="true">
-    <button class="b1" type="submit" onclick="resett()"> <strong>Add Data</strong> </button>
+    <strong>Longitude: </strong> <input type="text" name="lng" placeholder="Longitude" required="true">  
+    <button class="b1" type="submit"> <strong>Add Data</strong> </button>
+    &nbsp;
+    &nbsp;
+    <input type="checkbox" id="group" onclick="check()">&nbsp; <strong>Group</strong>
   </form>  
   <br>
   <br>
   <table id="table1">
     <tr>
       <th>Name</th>
-      <th>Place</th>
+      <th>Address</th>
       <th>Latitude</th>
       <th>Longitude</th>
       <th>View</th>
@@ -29,16 +32,19 @@
     <% for(var i=0; i<data.length; i++) { %>
       <tr>
         <td><%= data[i].name %></td>
-        <td><%= data[i].place %></td>
+        <td><%= data[i].address %></td>
         <td><%= data[i].lat %></td>
         <td><%= data[i].lng %></td>
-        <td id= "<%= data[i].place %>"> <button onclick="codeAddress(this.parentNode.id)" type="button" class="btn btn-info"> View </button></td>
+        <td id= "<%= data[i].address %>"> <button onclick="addd(this.parentNode.id)" type="button" class="btn btn-info"> View </button></td>
       </tr>
     <% } %>
   </table>
 </div>
 <br>
 <br>
+<p id="disp"></p>
+<br id="br1">
+<br id="br1">
 <div id="map"></div>
 <script src="https://maps.googleapis.com/maps/api/js?key=API_KEY&callback=initMap"
 async defer></script>

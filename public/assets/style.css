@@ -1,6 +1,7 @@
 body{
     padding: 20px;
     margin: 0 auto;
+    font-size: 18px;
 }
 #mapInit{
     width: 100%;
@@ -13,11 +14,14 @@ form {
 input[type="text"]:focus{
     vertical-align: middle;
 }
-
+#br1 {
+    display: none;
+}
 button{
     vertical-align: middle;
     box-sizing: border-box;
     outline: none;
+    font-size: 18px;
 }
 button:focus{
     outline: 0 !important;
@@ -37,6 +41,13 @@ tr:hover {
 }
 tr:nth-child(even) {
     background-color: #f2f2f2;
+}
+p {
+    text-align: center;
+    width: 100%;
+    background-color: beige;
+    padding: 10px;
+    display: none;
 }
 #map {
     width: 100%;

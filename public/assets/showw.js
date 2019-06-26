@@ -4,9 +4,8 @@ var map;
 var marker;
 var latLng;
 var options;
-function reset() {
-    document.getElementById("fo").reset();
-}
+var arr = [];
+var i;
 initMap();
 function initMap() {
     geocoder = new google.maps.Geocoder();
@@ -17,11 +16,36 @@ function initMap() {
     }
     map = new google.maps.Map(document.getElementById('map'), options);
 }
+function check() {
+    if(document.getElementById("group").checked === false) {
+        i = 0;
+        var total = setInterval(function() {
+            codeAddress(arr[i]);
+            i++;
+            if(i == arr.length) {
+                arr = [];
+                clearInterval(total);
+            }
+        }, 2000);
+    }
+}
+function addd(address) {
+    if(document.getElementById("group").checked === true) {
+        arr.push(address);
+    } else {
+        codeAddress(address);
+        arr = [];
+    }
+}
 function codeAddress(address) {
+    document.getElementById("br1").style.display = "block";
+    document.getElementById("disp").style.display = "block";
+    document.getElementById("disp").innerHTML = 
+        "<strong>" + "Current Address: " + "</strong>" + address;
+    console.log(address);
     geocoder.geocode({'address': address }, function (results, status) {
         latLng = {lat: results[0].geometry.location.lat (), lng: results[0].geometry.location.lng ()};
         if (status === 'OK') {
-            // console.log(latLng);
             marker = new google.maps.Marker({
                 position: latLng,
                 map: map

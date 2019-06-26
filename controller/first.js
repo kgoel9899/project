@@ -3,7 +3,7 @@ var mongoose = require("mongoose");
 mongoose.connect("mongodb://dmrctest:dmrc123@ds237357.mlab.com:37357/dmrcmap", { useNewUrlParser: true });
 var Schema = new mongoose.Schema({
   name: String,
-  place: String,
+  address: String,
   lat: Number,
   lng: Number
 });
@@ -26,8 +26,8 @@ module.exports = function(app){
   var addre = "a";
   app.post('/map', urlencodedParser, function(req, res){
     // console.log(req.body);
-    // console.log(req.body.place);
-    if(req.body.place !== addre) {
+    // console.log(req.body.address);
+    if(req.body.address !== addre) {
       // console.log("hereeeee");
       var newItem = Model(req.body).save(function(err, data) {
         if(err) {
@@ -43,7 +43,7 @@ module.exports = function(app){
           });
         }
       });
-      addre = req.body.place;
+      addre = req.body.address;
     } else {
       // console.log("success");
       Model.find({}, function(err, data) {
