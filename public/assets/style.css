@@ -39,13 +39,12 @@ table, th, td{
 tr:hover {
     background-color: #CCE5FF;
 }
-tr:nth-child(even) {
+tr th {
     background-color: #f2f2f2;
 }
 p {
     text-align: center;
     width: 100%;
-    background-color: beige;
     padding: 10px;
     display: none;
 }

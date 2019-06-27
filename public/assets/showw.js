@@ -54,9 +54,6 @@ function addd(address) {
 function codeAddress(address) {
     document.getElementById("br1").style.display = "block";
     document.getElementById("disp").style.display = "block";
-    document.getElementById("disp").innerHTML = 
-        "<strong>" + "Current Address: " + "</strong>" + address;
-    console.log(address);
     geocoder.geocode({'address': address }, function (results, status) {
         latLng = {lat: results[0].geometry.location.lat (), lng: results[0].geometry.location.lng ()};
         if (status === 'OK') {
@@ -70,4 +67,7 @@ function codeAddress(address) {
             alert('Geocode was not successful for the following reason: ' + status);
         }
     });
+    document.getElementById("disp").innerHTML = 
+        "<strong>" + "Current Address: " + "</strong>" + address;
+    console.log(address);
 }
