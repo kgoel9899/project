@@ -1,3 +1,8 @@
+var jquery = document.createElement("script");
+jquery.setAttribute("src", "https://code.jquery.com/jquery-3.3.1.js");
+jquery.setAttribute("integrity", "sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=");
+jquery.setAttribute("crossorigin", "anonymous");
+document.head.appendChild(jquery);
 var address;
 var geocoder;
 var map;
@@ -6,6 +11,7 @@ var latLng;
 var options;
 var arr = [];
 var i;
+var flag;
 initMap();
 function initMap() {
     geocoder = new google.maps.Geocoder();
@@ -31,7 +37,15 @@ function check() {
 }
 function addd(address) {
     if(document.getElementById("group").checked === true) {
-        arr.push(address);
+        flag = 0;
+        for(var i=0;i<arr.length;i++) {
+            if(arr[i] === address) {
+                flag = 1;
+            }
+        }
+        if(flag === 0) {
+            arr.push(address);
+        }
     } else {
         codeAddress(address);
         arr = [];
