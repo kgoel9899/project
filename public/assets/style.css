@@ -47,9 +47,13 @@ p {
     width: 100%;
     padding: 10px;
     display: none;
+    background-color: beige;
 }
 #map {
     width: 100%;
     align-content: center;
     height: 500px;
+}
+#res {
+    float: right;
 }

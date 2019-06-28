@@ -71,3 +71,7 @@ function codeAddress(address) {
         "<strong>" + "Current Address: " + "</strong>" + address;
     console.log(address);
 }
+function resett() {
+    initMap();
+    document.getElementById("disp").style.display = "none";
+}
