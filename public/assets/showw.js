@@ -74,4 +74,5 @@ function codeAddress(address) {
 function resett() {
     initMap();
     document.getElementById("disp").style.display = "none";
+    document.getElementById("br1").style.display = "none";
 }
