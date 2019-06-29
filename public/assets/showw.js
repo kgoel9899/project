@@ -54,8 +54,7 @@ function codeAddress(address) {
         if (status === 'OK') {
             marker = new google.maps.Marker({
                 position: latLng,
-                map: map,
-                icon: "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png"
+                map: map
             });
             marker.setAnimation(google.maps.Animation.BOUNCE);
             setTimeout(function() {
@@ -78,7 +77,8 @@ function codeAddress1(address) {
         if (status === 'OK') {
             marker = new google.maps.Marker({
                 position: latLng,
-                map: map
+                map: map,
+                icon: "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png"
             });
             marker.setAnimation(google.maps.Animation.BOUNCE);
             setTimeout(function() {
