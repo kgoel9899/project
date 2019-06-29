@@ -17,6 +17,9 @@ input[type="text"]:focus{
 #br1 {
     display: none;
 }
+.dispcheck {
+    display: none;
+}
 button{
     vertical-align: middle;
     box-sizing: border-box;
@@ -56,4 +59,10 @@ p {
 }
 #res {
     float: right;
+}
+#mu {
+    float: right;
+}
+#cent {
+    text-align: center;
 }

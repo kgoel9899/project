@@ -14,10 +14,12 @@
     <strong>Latitude: </strong> <input type="text" name="lat" placeholder="Latitude" required="true">
     <strong>Longitude: </strong> <input type="text" name="lng" placeholder="Longitude" required="true">  
     <button class="b1" type="submit"> <strong>Add Data</strong> </button>
-    &nbsp;
-    &nbsp;
-    <input type="checkbox" id="group" onclick="check()">&nbsp; <strong>Group Queries</strong>
   </form>  
+  <br>
+  <div id="mu">
+      <button id="dynamic" type="button" class="btn btn-primary" onclick="allprev()">Click to enable multiple selections</button>
+      <button type="button" class="btn btn-primary" onclick="alll()">View All</button>
+  </div>
   <br>
   <br>
   <table id="table1">
@@ -30,11 +32,11 @@
     </tr>
     <% for(var i=0; i<data.length; i++) { %>
       <tr>
-        <td><%= data[i].name %></td>
+        <td id="<%= data[i].address %>"><input type="checkbox" class="dispcheck"><%= data[i].name %></td>
         <td><%= data[i].address %></td>
         <td><%= data[i].lat %></td>
         <td><%= data[i].lng %></td>
-        <td id= "<%= data[i].address %>"> <button onclick="addd(this.parentNode.id)" type="button" class="btn btn-info"> View </button></td>
+        <td id= "<%= data[i].address %>"> <button onclick="codeAddress1(this.parentNode.id)" type="button" class="btn btn-info"> View </button></td>
       </tr>
     <% } %>
   </table>
