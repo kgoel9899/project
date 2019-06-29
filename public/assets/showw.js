@@ -54,8 +54,13 @@ function codeAddress(address) {
         if (status === 'OK') {
             marker = new google.maps.Marker({
                 position: latLng,
-                map: map
+                map: map,
+                icon: "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png"
             });
+            marker.setAnimation(google.maps.Animation.BOUNCE);
+            setTimeout(function() {
+                marker.setAnimation(null); 
+            }, 700);
             map.setZoom(15);
             map.panTo(latLng);
         } else {
@@ -75,6 +80,10 @@ function codeAddress1(address) {
                 position: latLng,
                 map: map
             });
+            marker.setAnimation(google.maps.Animation.BOUNCE);
+            setTimeout(function() {
+                marker.setAnimation(null); 
+            }, 700);
             map.setZoom(15);
             map.panTo(latLng);
         } else {
@@ -95,6 +104,7 @@ function allprev() {
     if(prev % 2 === 0) {
         for(var i=0;i<tot.length;i++) {
             tot[i].style.display = "none";
+            tot[i].checked = false;
         }
         document.getElementById("dynamic").innerHTML = "Click to enable multiple selections";
     } else {
