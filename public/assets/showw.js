@@ -20,6 +20,9 @@ var tim = 0;
 var x = 1;
 var every = "";
 var final = [];
+var sorrtt = [];
+var obj;
+var obj1;
 const sleep = (milliseconds) => {
     return new Promise(resolve => setTimeout(resolve, milliseconds))
 }
@@ -36,6 +39,7 @@ function initMap() {
 function check() {
     var i = 0;
     var total = setInterval(function() {
+        console.log(arr[i]);
         codeAddress(arr[i]);
         i++;
         if(i == arr.length) {
@@ -50,6 +54,12 @@ function codeAddress(address) {
     geocoder.geocode({'address': address }, function (results, status) {
         latLng = {lat: results[0].geometry.location.lat (), lng: results[0].geometry.location.lng ()};
         loc = new google.maps.LatLng(latLng.lat, latLng.lng);
+        obj = {
+            lat: latLng.lat,
+            lng: latLng.lng,
+            addr: address
+        };
+        sorrtt.push(obj);
         bounds.extend(loc);
         if (status === 'OK') {
             marker = new google.maps.Marker({
@@ -114,45 +124,70 @@ function allprev() {
         document.getElementById("dynamic").innerHTML = "Click to disable multiple selections";
     }
 }
-function alll() {
-    tot = document.getElementsByClassName("dispcheck");
-    for(var i=0;i<tot.length;i++) {
-        if(tot[i].checked === true) {
-            arr.push(tot[i].parentNode.id);
-            temparr.push(tot[i].parentNode.id);
-        }
-    }
-    document.getElementById("dynamic").innerHTML = "Click to enable multiple selections";
-    for(var i=0;i<tot.length;i++) {
-        tot[i].style.display = "none";
-        tot[i].checked = false;
-    }
-    prev = prev + 1;
-    bounds = new google.maps.LatLngBounds ();
-    check();
-    tim = (arr.length + 1) * 2000;
-    const printt = async (tim) => {
-        await sleep(tim)
-        map.fitBounds(bounds);
-        map.panToBounds(bounds);
-        x = 1;
-        for(var i=0;i<temparr.length;i++) {
-            if(i === temparr.length - 1) {
-                every = every + "<strong>" + x + ". " + "</strong>" + temparr[i];
-            } else {
-                every = every + "<strong>" + x + ". " + "</strong>" + temparr[i] + "~";
+function addd(address) {
+    if(document.getElementById(address).childNodes[0].checked === true) {
+        arr.push(address);
+        temparr.push(address);
+    } else {
+        var i = 0;
+        for(;i<arr.length;i++) {
+            if(arr[i] === address) {
+                break;
             }
-            x = x + 1;
         }
-        final = every.split("~");
-        document.getElementById("disp").innerHTML = "";
-        document.getElementById("disp").innerHTML = 
-        "<strong>" + "Addresses on the map for current selection: " + "</strong>" +
-        "<br>" +
-        final.join("<br>");
-        temparr = [];
-        final = [];
-        every = "";
+        arr.splice(i, 1);
+        temparr.splice(i, 1);
     }
-    printt(tim);
+}
+function alll() {
+    if(document.getElementById("dynamic").innerHTML === "Click to enable multiple selections") {
+        alert("First click on the adjacent button");
+    } else {
+        if(arr.length === 0) {
+            alert("First select some");
+        } else {
+            document.getElementById("dynamic").innerHTML = "Click to enable multiple selections";
+            for(var i=0;i<tot.length;i++) {
+                tot[i].style.display = "none";
+                tot[i].checked = false;
+            }
+            prev = prev + 1;
+            bounds = new google.maps.LatLngBounds ();
+            check();
+            tim = (arr.length + 1) * 2000;
+            const printt = async (tim) => {
+                await sleep(tim)
+                map.fitBounds(bounds);
+                map.panToBounds(bounds);
+                x = 1;
+                for(var i=0;i<sorrtt.length-1;i++) {
+                    for(var j=0;j<sorrtt.length-i-1;j++) {  
+                        if(sorrtt[j].lng > sorrtt[j+1].lng) {
+                            obj1 = sorrtt[j];
+                            sorrtt[j] = sorrtt[j + 1];
+                            sorrtt[j + 1] = obj1;
+                        }
+                    }
+                }
+                for(var i=0;i<sorrtt.length;i++) {
+                    if(i === temparr.length - 1) {
+                        every = every + "<strong>" + x + ". " + "</strong>" + sorrtt[i].addr;
+                    } else {
+                        every = every + "<strong>" + x + ". " + "</strong>" + sorrtt[i].addr + "~";
+                    }
+                    x = x + 1;
+                }
+                final = every.split("~");
+                document.getElementById("disp").innerHTML = "";
+                document.getElementById("disp").innerHTML = 
+                "<strong>" + "Addresses on the map for current selection from left to right: " + "</strong>" +
+                "<br>" +
+                final.join("<br>");
+                temparr = [];
+                final = [];
+                every = "";
+            }
+            printt(tim);
+        }
+    }
 }

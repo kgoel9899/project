@@ -32,7 +32,7 @@
     </tr>
     <% for(var i=0; i<data.length; i++) { %>
       <tr>
-        <td id="<%= data[i].address %>"><input type="checkbox" class="dispcheck"><%= data[i].name %></td>
+        <td id="<%= data[i].address %>"><input type="checkbox" class="dispcheck" onclick="addd(this.parentNode.id)"><%= data[i].name %></td>
         <td><%= data[i].address %></td>
         <td><%= data[i].lat %></td>
         <td><%= data[i].lng %></td>

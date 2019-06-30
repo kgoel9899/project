@@ -23,12 +23,12 @@ module.exports = function(app){
       }
     });
   });
+  var na = "1";
   var addre = "a";
+  var la = 100000;
+  var ln = 100000;
   app.post('/map', urlencodedParser, function(req, res){
-    // console.log(req.body);
-    // console.log(req.body.address);
-    if(req.body.address !== addre) {
-      // console.log("hereeeee");
+    if(req.body.name !== na && req.body.address !== addre && req.body.lat !== la && req.body.lng !== ln) {
       var newItem = Model(req.body).save(function(err, data) {
         if(err) {
           throw err;
@@ -43,7 +43,10 @@ module.exports = function(app){
           });
         }
       });
+      na = req.body.name;
       addre = req.body.address;
+      la = req.body.lat;
+      ln = req.body.lng;
     } else {
       // console.log("success");
       Model.find({}, function(err, data) {
