@@ -186,6 +186,7 @@ function alll() {
                 temparr = [];
                 final = [];
                 every = "";
+                sorrtt = [];
             }
             printt(tim);
         }
