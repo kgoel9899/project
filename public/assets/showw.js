@@ -162,10 +162,16 @@ function alll() {
                 x = 1;
                 for(var i=0;i<sorrtt.length-1;i++) {
                     for(var j=0;j<sorrtt.length-i-1;j++) {  
-                        if(sorrtt[j].lng > sorrtt[j+1].lng) {
+                        if(sorrtt[j].lng > sorrtt[j + 1].lng) {
                             obj1 = sorrtt[j];
                             sorrtt[j] = sorrtt[j + 1];
                             sorrtt[j + 1] = obj1;
+                        } else if(sorrtt[j].lng === sorrtt[j + 1].lng) {
+                            if(sorrtt[j].lat >= sorrtt[j + 1].lat) {
+                                obj1 = sorrtt[j];
+                                sorrtt[j] = sorrtt[j + 1];
+                                sorrtt[j + 1] = sorrtt[j];
+                            } 
                         }
                     }
                 }
