@@ -14,7 +14,7 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 module.exports = function(app){
 
-  app.get('/map', function(req, res){
+  app.get('/', function(req, res){
     Model.find({}, function(err, data) {
       if(err) {
         throw err;
@@ -27,7 +27,7 @@ module.exports = function(app){
   var addre = "a";
   var la = 100000;
   var ln = 100000;
-  app.post('/map', urlencodedParser, function(req, res){
+  app.post('/', urlencodedParser, function(req, res){
     if(req.body.name !== na && req.body.address !== addre && req.body.lat !== la && req.body.lng !== ln) {
       var newItem = Model(req.body).save(function(err, data) {
         if(err) {
