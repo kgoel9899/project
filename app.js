@@ -1,5 +1,6 @@
 var express = require('express');
 var first = require('./controller/first');
+var PORT = process.env.PORT || 3000;
 
 var app = express();
 
@@ -9,5 +10,5 @@ app.use(express.static('./public'));
 
 first(app);
 
-app.listen(3000);
+app.listen(PORT);
 console.log('Listening to port 3000');
