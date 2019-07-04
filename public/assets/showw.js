@@ -134,6 +134,8 @@ function allprev() {
             tot[i].checked = false;
         }
         document.getElementById("dynamic").innerHTML = "Click to enable multiple selections";
+        arr = [];
+        temparr = [];
     } else {
         for(var i=0;i<tot.length;i++) {
             tot[i].style.display = "block";
