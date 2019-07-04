@@ -37,7 +37,6 @@ const sleep = (milliseconds) => {
     return new Promise(resolve => setTimeout(resolve, milliseconds))
 }
 
-initMap();
 function initMap() {
     geocoder = new google.maps.Geocoder();
     options = {
