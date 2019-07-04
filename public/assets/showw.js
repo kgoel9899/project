@@ -3,6 +3,14 @@ jquery.setAttribute("src", "https://code.jquery.com/jquery-3.3.1.js");
 jquery.setAttribute("integrity", "sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=");
 jquery.setAttribute("crossorigin", "anonymous");
 document.head.appendChild(jquery);
+
+var mainn = document.createElement("script");
+var src = "https://maps.googleapis.com/maps/api/js?key=" + config.mapAPI + "&callback=initMap";
+mainn.setAttribute("src", src);
+mainn.setAttribute("async", "");
+mainn.setAttribute("defer", "");
+document.head.appendChild(mainn);
+
 var address;
 var geocoder;
 var map;
@@ -23,23 +31,26 @@ var final = [];
 var sorrtt = [];
 var obj;
 var obj1;
+var elem;
+
 const sleep = (milliseconds) => {
     return new Promise(resolve => setTimeout(resolve, milliseconds))
 }
+
 initMap();
 function initMap() {
     geocoder = new google.maps.Geocoder();
     options = {
-      zoom: 6,
-      center: {lat: 28.6139, lng: 77.2090},
-      gestureHandling: 'cooperative'
+        zoom: 6,
+        center: {lat: 28.6139, lng: 77.2090},
+        gestureHandling: 'cooperative'
     }
     map = new google.maps.Map(document.getElementById('map'), options);
 }
+
 function check() {
     var i = 0;
     var total = setInterval(function() {
-        console.log(arr[i]);
         codeAddress(arr[i]);
         i++;
         if(i == arr.length) {
@@ -48,6 +59,7 @@ function check() {
         }
     }, 2000);
 }
+
 function codeAddress(address) {
     document.getElementById("br1").style.display = "block";
     document.getElementById("disp").style.display = "block";
@@ -76,9 +88,11 @@ function codeAddress(address) {
             alert('Geocode was not successful for the following reason: ' + status);
         }
     });
-    document.getElementById("disp").innerHTML = 
-        "<strong>" + "Current Address: " + "</strong>" + address;
+    document.getElementById("disp").innerHTML = "<strong>" + "Current Address: " + "</strong>" + address;
+    elem = document.getElementById("map");
+    elem.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
+
 function codeAddress1(address) {
     document.getElementById("br1").style.display = "block";
     document.getElementById("disp").style.display = "block";
@@ -100,14 +114,17 @@ function codeAddress1(address) {
             alert('Geocode was not successful for the following reason: ' + status);
         }
     });
-    document.getElementById("disp").innerHTML = 
-        "<strong>" + "Current Address: " + "</strong>" + address;
+    document.getElementById("disp").innerHTML = "<strong>" + "Current Address: " + "</strong>" + address;
+    elem = document.getElementById("map");
+    elem.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
+
 function resett() {
     initMap();
     document.getElementById("disp").style.display = "none";
     document.getElementById("br1").style.display = "none";
 }
+
 function allprev() {
     prev = prev + 1;
     tot = document.getElementsByClassName("dispcheck");
@@ -124,6 +141,7 @@ function allprev() {
         document.getElementById("dynamic").innerHTML = "Click to disable multiple selections";
     }
 }
+
 function addd(address) {
     if(document.getElementById(address).childNodes[0].checked === true) {
         arr.push(address);
@@ -139,6 +157,7 @@ function addd(address) {
         temparr.splice(i, 1);
     }
 }
+
 function alll() {
     if(document.getElementById("dynamic").innerHTML === "Click to enable multiple selections") {
         alert("First click on the adjacent button");
@@ -146,6 +165,8 @@ function alll() {
         if(arr.length === 0) {
             alert("First select some");
         } else {
+            elem = document.getElementById("map");
+            elem.scrollIntoView({ behavior: 'smooth', block: 'center' });
             document.getElementById("dynamic").innerHTML = "Click to enable multiple selections";
             for(var i=0;i<tot.length;i++) {
                 tot[i].style.display = "none";
@@ -193,6 +214,8 @@ function alll() {
                 final = [];
                 every = "";
                 sorrtt = [];
+                elem = document.getElementById("map");
+                elem.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
             printt(tim);
         }

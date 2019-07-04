@@ -4,9 +4,12 @@
 	<title>MAP</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="/assets/style.css">
+  <script src="/assets/config.js"></script>
   <script src="/assets/showw.js"></script>
 </head>
-<body>
+<body id="full">
+<div id="image"></div>
+<br>
 <div id="mapInit">
   <form method="post" id="fo">
     <strong>Name: </strong> <input type="text" name="name" placeholder="Name" required="true">  
@@ -18,7 +21,7 @@
   <br>
   <div id="mu">
       <button id="dynamic" type="button" class="btn btn-primary" onclick="allprev()">Click to enable multiple selections</button>
-      <button type="button" class="btn btn-primary" onclick="alll()">View All</button>
+      <a href="#reach" class="btn btn-primary" onclick="alll()">View All</a>
   </div>
   <br>
   <br>
@@ -45,11 +48,12 @@
 <p id="disp"></p>
 <br id="br1">
 <br id="br1">
-<button onclick="resett()" id="res" type="button" class="btn btn-primary"><strong>Reset</strong></button>
+<div id="extra">
+  <a href="#full" class="btn btn-primary"><strong>Back To Top</strong></a>
+  <button onclick="resett()" type="button" class="btn btn-primary"><strong>Reset</strong></button>
+</div>
 <br>
 <br>
 <div id="map"></div>
-<script src="https://maps.googleapis.com/maps/api/js?key=API_KEY&callback=initMap"
-async defer></script>
 </body>
 </html>

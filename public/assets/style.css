@@ -8,6 +8,12 @@ body{
     box-sizing: border-box;
     overflow-x: auto;
 }
+#image {
+    background: url(/assets/logo.png) no-repeat center;
+    background-blend-mode: lighten;
+    background-size: 25% 100%;
+    height: 100px;
+}
 form {
     text-align: center;
 }
@@ -57,9 +63,9 @@ p {
     align-content: center;
     height: 500px;
 }
-#res {
+#mu {
     float: right;
 }
-#mu {
+#extra {
     float: right;
 }
